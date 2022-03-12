@@ -16,6 +16,7 @@ function App() {
     <main>
     <Routes>
       <Route path="users" element={<Users />} />
+      <Route path="/:userId/places" element={<UserPlaces />} />
       <Route path="pages" element={<Pages />} />
       <Route path="test" element={<Hello />} />
       </Routes>
