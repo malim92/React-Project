@@ -8,6 +8,7 @@ import UserPlaces from './places/pages/UserPlaces';
 import Users from './users/pages/users';
 import Pages from './places/pages/pages';
 import Hello from './test/hello';
+import NewPlace from './places/pages/NewPlace';
 
 function App() {
   return  (
@@ -19,6 +20,7 @@ function App() {
       <Route path="/:userId/places" element={<UserPlaces />} />
       <Route path="pages" element={<Pages />} />
       <Route path="test" element={<Hello />} />
+      <Route path="/places/new" element={<NewPlace />} />
       </Routes>
       </main> 
   </Router>);
