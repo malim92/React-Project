@@ -1,5 +1,6 @@
 import React, { useReducer } from "react";
 
+import { validate } from "../../util/validators.js" ;
 import "./Input.css";
 
 const inputReducer = (state, action) => {
@@ -8,7 +9,7 @@ const inputReducer = (state, action) => {
       return {
         ...state,
         value: action.val,
-        isValid: true,
+        isValid: validate(action.val, action.validators),
       };
     default:
     return state;
@@ -22,7 +23,7 @@ const Input = (props) => {
   });
 
   const changeHandler = (event) => {
-    dispatch({ type: "CHANGE", val: event.target.value });
+    dispatch({ type: "CHANGE", val: event.target.value, validators: props.validators });
   };
   
   const element =
@@ -30,6 +31,7 @@ const Input = (props) => {
       <input
         id={props.id}
         type={props.type}
+        rows={props.rows || 10}
         placeholder={props.placeholder}
         onChange={changeHandler}
         value={inputState.value}
@@ -42,7 +44,7 @@ const Input = (props) => {
         value={inputState.value}
       />
     );
-
+    console.log(element.props);
   return (
     <div
       className={`form-control ${
