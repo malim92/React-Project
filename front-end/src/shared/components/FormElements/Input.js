@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 
 import { validate } from "../../util/validators.js" ;
 import "./Input.css";
@@ -19,8 +19,15 @@ const inputReducer = (state, action) => {
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
     value: "",
-    isValid: false,
+    isValid: true,
   });
+
+  const { id, onInput } = props;
+  const { value, isValid } = inputState;
+  
+  useEffect(() => {
+    onInput( value, isValid)
+  }, [ value, isValid, onInput]);
 
   const changeHandler = (event) => {
     dispatch({ type: "CHANGE", val: event.target.value, validators: props.validators });
@@ -44,8 +51,8 @@ const Input = (props) => {
         value={inputState.value}
       />
     );
-    console.log(element.props);
-  return (
+
+    return (
     <div
       className={`form-control ${
         !inputState.isValid && "form-control--invalid"
