@@ -9,6 +9,7 @@ import Users from './users/pages/users';
 import Pages from './places/pages/pages';
 import Hello from './test/hello';
 import NewPlace from './places/pages/NewPlace';
+import UpdatePlace from './places/pages/UpdatePlace';
 
 function App() {
   return  (
@@ -21,6 +22,7 @@ function App() {
       <Route path="pages" element={<Pages />} />
       <Route path="test" element={<Hello />} />
       <Route path="/places/new" element={<NewPlace />} />
+      <Route path="/places/:id" element={<UpdatePlace />} />
       </Routes>
       </main> 
   </Router>);

@@ -18,16 +18,16 @@ const inputReducer = (state, action) => {
 
 const Input = (props) => {
   const [inputState, dispatch] = useReducer(inputReducer, {
-    value: "",
-    isValid: true,
+    value: props.value || '',
+    isValid: props.valid || false,
   });
 
   const { id, onInput } = props;
   const { value, isValid } = inputState;
   
   useEffect(() => {
-    onInput( value, isValid)
-  }, [ value, isValid, onInput]);
+    onInput(id, value, isValid)
+  }, [id, value, isValid, onInput]);
 
   const changeHandler = (event) => {
     dispatch({ type: "CHANGE", val: event.target.value, validators: props.validators });
