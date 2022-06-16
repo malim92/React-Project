@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Auth from "../../../users/pages/Auth";
+
 
 import './NavLinks.css';
 
@@ -19,5 +21,4 @@ const NavLink = props => {
         </li>
     </ul>
 }
-
 export default NavLink;
