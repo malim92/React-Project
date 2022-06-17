@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useContext} from "react";
 
 import { useForm } from "../../shared/hooks/form-hook";
 import Input from "../../shared/components/FormElements/Input";
@@ -10,8 +10,12 @@ import {
 import Card from "../../shared/components/UIElements/Card";
 import Button from "../../shared/components/FormElements/Button";
 import "./Auth.css";
+import { AuthContext } from "../../shared/context/auth-context";
 
 const Auth = () => {
+
+  const auth = useContext(AuthContext);
+
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
@@ -48,11 +52,17 @@ const Auth = () => {
     setIsLoginMode(prevMode => !prevMode);
   }
 
+  const authSubmitHandler = event => {
+    event.preventDefault();
+    console.log(formState.inputs);
+    auth.login();
+  };
+
   return (
     <Card className="authentication">
         <h2>{!isloginMode ?'Log In': 'Sign Up'}</h2>
         <hr />
-      <form>
+        <form onSubmit={authSubmitHandler}>
         {isloginMode && (
             <Input
             id="name"
